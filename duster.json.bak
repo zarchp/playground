@@ -1,0 +1,13 @@
+{
+  "include": ["app", "config", "tests"],
+  "exclude": [],
+  "scripts": {
+    "lint": {
+      "PHP Version": ["php", "-v"],
+      "PHPStan Version": ["phpstan", "-V"],
+      "PHPStan": ["phpstan", "analyse"],
+      "Pest Version": ["pest", "--version"],
+      "Pest": ["pest"]
+    }
+  }
+}
