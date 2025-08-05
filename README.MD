@@ -10,7 +10,7 @@ An experimental sandbox for testing Laravel + React (Inertia.js) code, new featu
 
 - **Laravel** — PHP Backend Framework
 - **Inertia.js** — Modern monolith (SPA without API)
-- **React Starter Kit** — Newest React + TypeScript setup
+- **React Starter Kit** — React + TypeScript setup
 - **Tailwind CSS** — Utility-first CSS Framework
 - **shadcn/ui** — Beautiful, accessible components
 - **pnpm** — Fast and efficient package manager
@@ -31,7 +31,7 @@ An experimental sandbox for testing Laravel + React (Inertia.js) code, new featu
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/playground.git
+git clone https://github.com/zarchp/playground.git
 cd playground
 
 # Backend dependencies
