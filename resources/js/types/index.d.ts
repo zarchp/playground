@@ -65,3 +65,12 @@ export interface PaginatedResult<T> {
     total: number;
   };
 }
+
+export interface Chat {
+  id: number;
+  sender_id: number;
+  receiver_id: number;
+  message: string;
+  created_at: string;
+  updated_at: string;
+}
