@@ -59,7 +59,7 @@ export default function Index() {
 
       <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
         <div
-          className="relative h-full w-full border rounded"
+          className="relative h-full w-full rounded border"
           onClick={handleRoll}
         >
           <div className="absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-center">

@@ -1,6 +1,6 @@
-import Debugbar from './Debugbar'
+import Debugbar from './Debugbar';
 const Barryvdh = {
-    Debugbar,
-}
+  Debugbar,
+};
 
-export default Barryvdh
+export default Barryvdh;

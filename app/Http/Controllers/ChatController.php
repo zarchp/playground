@@ -10,7 +10,6 @@ use App\Http\Requests\UpdateChatRequest;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -23,10 +22,10 @@ final class ChatController
     {
         $senderId = auth()->id();
         $receiverId = $senderId === 1 ? 2 : 1;
-        $receiverName = User::find($receiverId)?->name;
+        $receiverName = User::query()->find($receiverId)?->name;
         $chats = Chat::query()
             ->with(['sender', 'receiver'])
-            ->where(function (Builder $query) use ($senderId) {
+            ->where(function (Builder $query) use ($senderId): void {
                 $query->where('sender_id', $senderId)
                     ->orWhere('receiver_id', $senderId);
             })
@@ -37,7 +36,7 @@ final class ChatController
             'chats' => $chats,
             'senderId' => $senderId,
             'receiverId' => $receiverId,
-            'receiverName' => $receiverName
+            'receiverName' => $receiverName,
         ]);
     }
 
@@ -54,7 +53,7 @@ final class ChatController
      */
     public function store(StoreChatRequest $storeChatRequest): void
     {
-        $chat = Chat::create($storeChatRequest->validated());
+        $chat = Chat::query()->create($storeChatRequest->validated());
 
         broadcast(new MessageSent($chat));
 

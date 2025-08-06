@@ -1,8 +1,8 @@
-import ProfileController from './ProfileController'
-import PasswordController from './PasswordController'
+import PasswordController from './PasswordController';
+import ProfileController from './ProfileController';
 const Settings = {
-    ProfileController,
-PasswordController,
-}
+  ProfileController,
+  PasswordController,
+};
 
-export default Settings
+export default Settings;

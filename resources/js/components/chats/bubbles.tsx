@@ -1,6 +1,4 @@
 import { Chat } from '@/types';
-import { useEcho } from '@laravel/echo-react';
-import { useState } from 'react';
 
 export function Bubbles({
   chats,

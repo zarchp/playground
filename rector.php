@@ -6,6 +6,7 @@ use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\Node\RemoveNonExistingVarAnnotationRector;
+use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use RectorLaravel\Set\LaravelSetList;
 
@@ -50,5 +51,6 @@ return RectorConfig::configure()
         EncapsedStringsToSprintfRector::class,
         RemoveNonExistingVarAnnotationRector::class,
         SymplifyQuoteEscapeRector::class,
+        RenameParamToMatchTypeRector::class,
         __DIR__ . '/bootstrap/cache',
     ]);

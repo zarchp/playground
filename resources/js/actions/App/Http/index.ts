@@ -1,6 +1,6 @@
-import Controllers from './Controllers'
+import Controllers from './Controllers';
 const Http = {
-    Controllers,
-}
+  Controllers,
+};
 
-export default Http
+export default Http;

@@ -1,6 +1,6 @@
-import BroadcastController from './BroadcastController'
+import BroadcastController from './BroadcastController';
 const Broadcasting = {
-    BroadcastController,
-}
+  BroadcastController,
+};
 
-export default Broadcasting
+export default Broadcasting;
