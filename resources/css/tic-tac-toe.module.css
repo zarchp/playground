@@ -1,0 +1,15 @@
+.child:nth-child(-n + 3) {
+  border-bottom: var(--border);
+}
+
+.child:nth-child(3n + 1) {
+  border-right: var(--border);
+}
+
+.child:nth-child(3n) {
+  border-left: var(--border);
+}
+
+.child:nth-child(n + 7) {
+  border-top: var(--border);
+}

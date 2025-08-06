@@ -37,8 +37,8 @@ import AppLogoIcon from './app-logo-icon';
 
 const mainNavItems: NavItem[] = [
   {
-    title: 'Dashboard',
-    href: '/dashboard',
+    title: 'Home',
+    href: route('home'),
     icon: LayoutGrid,
   },
 ];
@@ -137,7 +137,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
           </div>
 
           <Link
-            href="/dashboard"
+            href={route('home')}
             prefetch
             className="flex items-center space-x-2"
           >

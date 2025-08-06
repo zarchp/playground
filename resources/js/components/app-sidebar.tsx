@@ -1,4 +1,3 @@
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -12,43 +11,34 @@ import {
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import {
-  BookOpen,
-  Dices,
-  Folder,
-  LayoutGrid,
-  MessageCircleMore,
-} from 'lucide-react';
+import { Dices, Hash, Home, LayoutGrid, MessageCircleMore } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
   {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: LayoutGrid,
+    title: 'Home',
+    href: route('home'),
+    icon: Home,
   },
   {
     title: 'Chats',
-    href: '/chats',
+    href: route('chats.index'),
     icon: MessageCircleMore,
   },
   {
     title: 'Dice',
-    href: '/dice',
+    href: route('dice.index'),
     icon: Dices,
   },
-];
-
-const footerNavItems: NavItem[] = [
   {
-    title: 'Repository',
-    href: 'https://github.com/laravel/react-starter-kit',
-    icon: Folder,
+    title: 'Tic Tac Toe',
+    href: route('tic-tac-toe.index'),
+    icon: Hash,
   },
   {
-    title: 'Documentation',
-    href: 'https://laravel.com/docs/starter-kits#react',
-    icon: BookOpen,
+    title: '2048',
+    href: route('four-eight.index'),
+    icon: LayoutGrid,
   },
 ];
 
@@ -66,7 +56,7 @@ export function AppSidebar() {
               asChild
             >
               <Link
-                href="/dashboard"
+                href={route('home')}
                 prefetch
               >
                 <AppLogo />
@@ -81,10 +71,6 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavFooter
-          items={footerNavItems}
-          className="mt-auto"
-        />
         <NavUser />
       </SidebarFooter>
     </Sidebar>

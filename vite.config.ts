@@ -24,6 +24,7 @@ export default defineConfig({
       'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
       '@': path.resolve(__dirname, 'resources/js'),
       '@repo': path.resolve(__dirname, 'resources/js/components/ui/shadcn-io'),
+      '@css': path.resolve(__dirname, 'resources/css'),
     },
   },
 });

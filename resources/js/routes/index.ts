@@ -1,6 +1,6 @@
 import { queryParams, type QueryParams } from './../wayfinder'
 /**
- * @see routes/web.php:10
+ * @see routes/web.php:16
  * @route '/'
  */
 export const home = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -17,7 +17,7 @@ home.definition = {
 }
 
 /**
- * @see routes/web.php:10
+ * @see routes/web.php:16
  * @route '/'
  */
 home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -25,7 +25,7 @@ home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 }
 
 /**
- * @see routes/web.php:10
+ * @see routes/web.php:16
  * @route '/'
  */
 home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -36,7 +36,7 @@ home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     method: 'get',
 })
 /**
- * @see routes/web.php:10
+ * @see routes/web.php:16
  * @route '/'
  */
 home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -44,54 +44,6 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     method: 'head',
 } => ({
     url: home.url(options),
-    method: 'head',
-})
-
-/**
- * @see routes/web.php:15
- * @route '/dashboard'
- */
-export const dashboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
-    url: dashboard.url(options),
-    method: 'get',
-})
-
-dashboard.definition = {
-    methods: ['get','head'],
-    url: '/dashboard',
-}
-
-/**
- * @see routes/web.php:15
- * @route '/dashboard'
- */
-dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
-    return dashboard.definition.url + queryParams(options)
-}
-
-/**
- * @see routes/web.php:15
- * @route '/dashboard'
- */
-dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
-    url: dashboard.url(options),
-    method: 'get',
-})
-/**
- * @see routes/web.php:15
- * @route '/dashboard'
- */
-dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
-    url: dashboard.url(options),
     method: 'head',
 })
 

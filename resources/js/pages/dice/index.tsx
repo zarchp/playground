@@ -14,7 +14,7 @@ import { useRef, useState } from 'react';
 
 export default function Index() {
   const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: route('dashboard') },
+    { title: 'Home', href: route('home') },
     { title: 'Dice', href: route('dice.index') },
   ];
 

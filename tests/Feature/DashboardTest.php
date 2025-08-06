@@ -16,7 +16,7 @@ final class DashboardTest extends TestCase
     #[Test]
     public function guests_are_redirected_to_the_login_page(): void
     {
-        $this->get('/dashboard')->assertRedirect('/login');
+        $this->get('/')->assertRedirect('/login');
     }
 
     #[Test]
@@ -24,6 +24,6 @@ final class DashboardTest extends TestCase
     {
         $this->actingAs($user = User::factory()->create());
 
-        $this->get('/dashboard')->assertOk();
+        $this->get('/')->assertOk();
     }
 }
