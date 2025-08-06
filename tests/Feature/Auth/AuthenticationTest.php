@@ -32,7 +32,7 @@ final class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $testResponse->assertRedirect(route('dashboard', absolute: false));
+        $testResponse->assertRedirect(route('home', absolute: false));
     }
 
     #[Test]

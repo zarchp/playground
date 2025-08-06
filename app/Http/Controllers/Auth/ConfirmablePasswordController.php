@@ -36,6 +36,6 @@ final class ConfirmablePasswordController
 
         $request->session()->put('auth.password_confirmed_at', \Carbon\Carbon::now()->getTimestamp());
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('home', absolute: false));
     }
 }

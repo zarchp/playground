@@ -43,7 +43,7 @@ final class EmailVerificationTest extends TestCase
 
         Event::assertDispatched(Verified::class);
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
-        $testResponse->assertRedirect(route('dashboard', absolute: false) . '?verified=1');
+        $testResponse->assertRedirect(route('home', absolute: false) . '?verified=1');
     }
 
     #[Test]

@@ -17,11 +17,11 @@ final class VerifyEmailController
     public function __invoke(EmailVerificationRequest $emailVerificationRequest): RedirectResponse
     {
         if ($emailVerificationRequest->user()?->hasVerifiedEmail()) {
-            return redirect()->intended(route('dashboard', absolute: false) . '?verified=1');
+            return redirect()->intended(route('home', absolute: false) . '?verified=1');
         }
 
         $emailVerificationRequest->fulfill();
 
-        return redirect()->intended(route('dashboard', absolute: false) . '?verified=1');
+        return redirect()->intended(route('home', absolute: false) . '?verified=1');
     }
 }
