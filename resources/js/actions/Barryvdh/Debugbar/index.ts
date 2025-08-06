@@ -1,6 +1,6 @@
-import Controllers from './Controllers';
+import Controllers from './Controllers'
 const Debugbar = {
-  Controllers,
-};
+    Controllers,
+}
 
-export default Debugbar;
+export default Debugbar

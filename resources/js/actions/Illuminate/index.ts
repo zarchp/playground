@@ -1,8 +1,8 @@
-import Broadcasting from './Broadcasting';
-import Routing from './Routing';
+import Routing from './Routing'
+import Broadcasting from './Broadcasting'
 const Illuminate = {
-  Routing,
-  Broadcasting,
-};
+    Routing,
+Broadcasting,
+}
 
-export default Illuminate;
+export default Illuminate
