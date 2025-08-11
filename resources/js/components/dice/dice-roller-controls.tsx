@@ -58,7 +58,9 @@ export function DiceRollerControls({
           setNumber={handleSetQty}
           className="w-full bg-white p-0"
           slidingNumberProps={{ className: 'w-full justify-center' }}
-          buttonProps={{ className: 'bg-accent' }}
+          buttonProps={{
+            className: 'bg-secondary text-background hover:bg-secondary/75',
+          }}
         />
       </div>
 

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -47,3 +50,8 @@ function something(): void
 {
     // ..
 }
+
+pest()
+    ->extend(TestCase::class)
+    ->use(RefreshDatabase::class)
+    ->in('Feature', 'Unit');

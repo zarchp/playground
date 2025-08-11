@@ -23,7 +23,7 @@ export default function AuthSplitLayout({
           href={route('home')}
           className="relative z-20 flex items-center text-lg font-medium"
         >
-          <AppLogoIcon className="mr-2 size-8 fill-current text-neutral-800" />
+          <AppLogoIcon className="mr-2 size-8 fill-current text-amber-800" />
           <span className="text-xl text-neutral-800">{name}</span>
         </Link>
         {quote && (

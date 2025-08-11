@@ -5,7 +5,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { CountingNumber } from '@/components/ui/shadcn-io/counting-number';
-import { useDiceBox } from '@/hooks/useDiceBox';
+import { useDiceBox } from '@/hooks/use-dice-box';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';

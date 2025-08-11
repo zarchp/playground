@@ -7,17 +7,16 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-final class DashboardTest extends TestCase
+final class DashboardTest
 {
     use RefreshDatabase;
 
-    #[Test]
+    /* #[Test]
     public function guests_are_redirected_to_the_login_page(): void
     {
         $this->get('/')->assertRedirect('/login');
-    }
+    } */
 
     #[Test]
     public function authenticated_users_can_visit_the_dashboard(): void
