@@ -76,17 +76,16 @@ export default function Dashboard() {
             className="max-w-4xl"
           >
             <div className="inline-flex items-center gap-2 rounded-full border bg-white/70 px-3 py-1 text-sm backdrop-blur dark:bg-zinc-900/60">
-              {/* <Sparkles className="h-4 w-4" /> */}
               <Duck className="h-4 w-4" />
               <span>Welcome to Playground</span>
             </div>
 
             <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              Mini games & utilities, built with Laravel + React.
+              A Curated Collection of Mini-Games & Utilities
             </h1>
             <p className="mt-2 text-zinc-600 dark:text-zinc-300">
-              Explore the tools below. Each app showcases clean architecture,
-              keyboard support, and a11y-friendly UI.
+              Explore the tools below for quick games and utilities to help you
+              learn, play, and have fun.
             </p>
 
             {/* <div className="mt-4 flex gap-3">
