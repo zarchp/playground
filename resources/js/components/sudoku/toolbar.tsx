@@ -49,6 +49,9 @@ export default function Toolbar({
 
   const newGame = async (d: Difficulty) => {
     setDifficulty(d);
+    window.dispatchEvent(
+      new CustomEvent('sudoku:difficulty', { detail: { difficulty: d } }),
+    );
     const res = await fetch('/sudoku/new', {
       method: 'POST',
       headers: {

@@ -133,7 +133,7 @@ score.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\SudokuController::leaderboard
- * @see app/Http/Controllers/SudokuController.php:63
+ * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
 export const leaderboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -151,7 +151,7 @@ leaderboard.definition = {
 
 /**
 * @see \App\Http\Controllers\SudokuController::leaderboard
- * @see app/Http/Controllers/SudokuController.php:63
+ * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
 leaderboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -160,7 +160,7 @@ leaderboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) 
 
 /**
 * @see \App\Http\Controllers\SudokuController::leaderboard
- * @see app/Http/Controllers/SudokuController.php:63
+ * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
 leaderboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -172,7 +172,7 @@ leaderboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }):
 })
 /**
 * @see \App\Http\Controllers\SudokuController::leaderboard
- * @see app/Http/Controllers/SudokuController.php:63
+ * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
 leaderboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

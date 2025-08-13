@@ -1,6 +1,6 @@
 import type { Difficulty } from '@/utils/sudoku-types';
 import { formatClock } from '@/utils/time';
-import { router, useForm } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import confetti from 'canvas-confetti';
 import { useEffect, useRef } from 'react';
 import { Button } from '../ui/button';
@@ -57,18 +57,20 @@ export default function VictoryModal({
   const submit = () => {
     post('/sudoku/score', {
       preserveScroll: true,
-      onSuccess: () => {
+      preserveState: false,
+      /* onSuccess: () => {
         // After save, reload only the leaderboard prop from the page
         router.reload({
           only: ['leaderboard'],
           onSuccess: (page) => {
-            const lb = (page.props as any).leaderboard ?? [];
-            onSubmitted(lb);
+            console.log(page);
+            const leaderboard = (page.props as any).leaderboard ?? [];
+            onSubmitted(leaderboard);
             onClose();
             reset('name');
           },
         });
-      },
+      }, */
     });
   };
 

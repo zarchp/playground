@@ -53,6 +53,11 @@ class SudokuController
             'user_agent' => $ua,
         ]);
 
+        if ($request->header('X-Inertia')) {
+            return to_route('sudoku.index', ['difficulty' => $request->string('difficulty')])
+                ->with('score_saved', true);
+        }
+
         return response()->json([
             'stored' => true,
             'score' => $score,

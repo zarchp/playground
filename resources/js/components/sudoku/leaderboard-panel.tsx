@@ -23,6 +23,18 @@ export default function LeaderboardPanel({
     load(difficulty);
   }, [difficulty]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const d = (e as CustomEvent).detail.difficulty as Difficulty;
+      console.log(d);
+      setDifficulty(d);
+      load(d);
+    };
+    window.addEventListener('sudoku:difficulty', handler as EventListener);
+    return () =>
+      window.removeEventListener('sudoku:difficulty', handler as EventListener);
+  }, []);
+
   const medalColors = {
     1: 'bg-yellow-300 text-yellow-900', // gold
     2: 'bg-gray-300 text-gray-900', // silver
@@ -39,7 +51,7 @@ export default function LeaderboardPanel({
     <div className="flex flex-col items-center gap-2 rounded border bg-background p-4 shadow">
       {/* <div className="mb-3 flex flex-col items-center justify-center gap-4"> */}
       <h1 className="text-2xl font-semibold">Leaderboard</h1>
-      <Tabs defaultValue="easy">
+      <Tabs value={difficulty}>
         <TabsList>
           {(['easy', 'medium', 'hard'] as Difficulty[]).map((d) => (
             <TabsTrigger
