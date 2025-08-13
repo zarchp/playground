@@ -110,7 +110,7 @@ export default function Dashboard() {
         {/* Apps */}
         <section
           id="apps"
-          className="space-y-4 px-8"
+          className="space-y-4 px-8 pb-8"
         >
           <div className="flex items-end justify-between">
             <h2 className="text-xl font-semibold">Available Apps</h2>
