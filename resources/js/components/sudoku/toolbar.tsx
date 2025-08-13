@@ -83,12 +83,12 @@ export default function Toolbar({
         </select>
 
         <Button onClick={() => newGame(difficulty)}>Play Again</Button>
-        <Button
+        {/* <Button
           variant="outline"
           onClick={check}
         >
           Check
-        </Button>
+        </Button> */}
         <Button
           variant="outline"
           onClick={giveHint}

@@ -27,4 +27,18 @@ class StoreSudokuScoreRequest extends FormRequest
             'time_seconds' => ['required', 'integer', 'min:10', 'max:86400'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'time_seconds.min' => "Nice try McQueen ⚡ under :min seconds is impressive… for *typing 9 random numbers*. Try again with a real time, champ.",
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'time_seconds' => 'time',
+        ];
+    }
 }

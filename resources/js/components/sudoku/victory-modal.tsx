@@ -1,6 +1,9 @@
 import type { Difficulty } from '@/utils/sudoku-types';
+import { formatClock } from '@/utils/time';
+import { router, useForm } from '@inertiajs/react';
 import confetti from 'canvas-confetti';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { Button } from '../ui/button';
 
 export default function VictoryModal({
   open,
@@ -15,8 +18,18 @@ export default function VictoryModal({
   timeSeconds: number;
   onSubmitted: (leaderboard: any[]) => void;
 }) {
-  const [name, setName] = useState('');
   const fired = useRef(false);
+
+  const { data, setData, post, processing, errors, reset, clearErrors } =
+    useForm<{
+      name: string;
+      difficulty: Difficulty;
+      time_seconds: number;
+    }>({
+      name: '',
+      difficulty,
+      time_seconds: timeSeconds,
+    });
 
   useEffect(() => {
     if (open && !fired.current) {
@@ -25,20 +38,38 @@ export default function VictoryModal({
     }
   }, [open]);
 
-  const submit = async () => {
-    const res = await fetch('/sudoku/score', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN':
-          (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)
-            ?.content ?? '',
+  useEffect(() => {
+    setData('difficulty', difficulty);
+  }, [difficulty, setData]);
+
+  useEffect(() => {
+    setData('time_seconds', timeSeconds);
+  }, [timeSeconds, setData]);
+
+  useEffect(() => {
+    if (!open) {
+      reset('name');
+      clearErrors();
+      fired.current = false;
+    }
+  }, [open, reset, clearErrors]);
+
+  const submit = () => {
+    post('/sudoku/score', {
+      preserveScroll: true,
+      onSuccess: () => {
+        // After save, reload only the leaderboard prop from the page
+        router.reload({
+          only: ['leaderboard'],
+          onSuccess: (page) => {
+            const lb = (page.props as any).leaderboard ?? [];
+            onSubmitted(lb);
+            onClose();
+            reset('name');
+          },
+        });
       },
-      body: JSON.stringify({ name, difficulty, time_seconds: timeSeconds }),
     });
-    const data = await res.json();
-    onSubmitted(data.leaderboard);
-    onClose();
   };
 
   if (!open) return null;
@@ -53,29 +84,55 @@ export default function VictoryModal({
       <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
         <h2 className="mb-2 text-2xl font-bold">Congrats, you win! 🎉</h2>
         <p className="mb-4">
-          Time: <b>{Math.floor(timeSeconds)}s</b>
+          Time: <b>{formatClock(data.time_seconds)}</b>
         </p>
-        <label className="mb-1 block text-sm font-medium">Name</label>
+
+        <label
+          className="mb-1 block text-sm font-medium"
+          htmlFor="name"
+        >
+          Name
+        </label>
         <input
-          className="mb-4 w-full rounded-lg border px-3 py-2"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          id="name"
+          className="mb-1 w-full rounded-lg border px-3 py-2"
+          value={data.name}
+          onChange={(e) => setData('name', e.target.value)}
           placeholder="Your name"
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? 'name-error' : undefined}
         />
-        <div className="flex justify-end gap-2">
+        {errors.name && (
+          <p
+            id="name-error"
+            className="mb-3 text-sm text-red-600"
+          >
+            {errors.name}
+          </p>
+        )}
+        {errors.time_seconds && (
+          <p
+            id="time_seconds-error"
+            className="mb-3 text-sm text-red-600"
+          >
+            {errors.time_seconds}
+          </p>
+        )}
+
+        <div className="mt-4 flex justify-end gap-2">
           <button
             className="rounded-lg px-3 py-1.5"
             onClick={onClose}
+            disabled={processing}
           >
             Close
           </button>
-          <button
-            className="rounded-lg bg-blue-600 px-3 py-1.5 text-white"
+          <Button
             onClick={submit}
-            disabled={!name.trim()}
+            disabled={processing || !data.name.trim()}
           >
-            Submit Score
-          </button>
+            {processing ? 'Submitting…' : 'Submit Score'}
+          </Button>
         </div>
       </div>
     </div>

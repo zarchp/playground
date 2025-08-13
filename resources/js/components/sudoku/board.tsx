@@ -24,7 +24,6 @@ export default function Board() {
     [selection],
   );
 
-  // keyboard support
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;

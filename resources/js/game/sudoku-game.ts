@@ -3,8 +3,8 @@ import type { Board, Difficulty } from '@/utils/sudoku-types';
 
 export type GState = {
   board: Board;
-  fixed: Set<string>; // `${r},${c}` of givens
-  solution: Board; // computed client side for hint/check (not shown in UI)
+  fixed: Set<string>;
+  solution: Board;
   selection: { row: number; col: number } | null;
   difficulty: Difficulty;
   movesCount: number;
@@ -38,19 +38,23 @@ export const SudokuMoves = {
   setNumber(state: GState, n: number) {
     const sel = state.selection;
     if (!sel) return;
+
     const key = `${sel.row},${sel.col}`;
     if (state.fixed.has(key)) return;
     if (n < 0 || n > 9) return;
+    if (SudokuMoves.isWin(state)) return;
+
     state.board[sel.row][sel.col] = n;
     state.movesCount++;
-    // win check
-    state.won = state.board
-      .flat()
-      .every((x, i) => x === state.solution.flat()[i]);
+    state.won = SudokuMoves.isWin(state);
+  },
+  isWin(state: GState) {
+    return state.board.flat().every((x, i) => x === state.solution.flat()[i]);
   },
   clear(state: GState) {
     const sel = state.selection;
     if (!sel) return;
+
     const key = `${sel.row},${sel.col}`;
     if (state.fixed.has(key)) return;
     if (state.board[sel.row][sel.col] !== 0) {
@@ -74,7 +78,7 @@ export const SudokuMoves = {
     }
 
     const pool = empty.length ? empty : incorrect;
-    if (!pool.length) return; // nothing to hint
+    if (!pool.length) return;
 
     const pick = pool[Math.floor(Math.random() * pool.length)];
     const { r, c } = pick;
@@ -83,7 +87,6 @@ export const SudokuMoves = {
     state.selection = { row: r, col: c };
     state.movesCount++;
 
-    // Win check without allocating arrays
     let solved = true;
     outer: for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {

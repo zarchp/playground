@@ -32,7 +32,7 @@ Route::post('/sudoku/new', [SudokuController::class, 'new'])
     // ->middleware('throttle:sudoku-new')
     ->name('sudoku.new');
 Route::post('/sudoku/score', [SudokuController::class, 'score'])
-    ->middleware('throttle:sudoku-score')
+    // ->middleware('throttle:sudoku-score')
     ->name('sudoku.score');
 Route::get('/sudoku/leaderboard', [SudokuController::class, 'leaderboard'])->name('sudoku.leaderboard');
 
