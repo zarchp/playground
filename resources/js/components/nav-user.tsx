@@ -50,13 +50,13 @@ export function NavUser() {
             size="lg"
             asChild
           >
-            <Link
+            {/* <Link
               href={route('login')}
               prefetch
             >
               <LogIn />
               <span>Log In</span>
-            </Link>
+            </Link> */}
           </SidebarMenuButton>
         )}
       </SidebarMenuItem>
