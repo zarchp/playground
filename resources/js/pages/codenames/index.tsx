@@ -112,7 +112,6 @@ export default function Index() {
   const spymasterUrl = (() => {
     const url = new URL(window.location.origin + '/codenames');
     url.searchParams.set('seed', card.seed || '');
-    url.searchParams.set('start', card.startingTeam);
     return url.toString();
   })();
 
