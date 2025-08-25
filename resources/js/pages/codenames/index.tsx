@@ -1,12 +1,4 @@
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { CellType, generateKey } from '@/utils/codenames-key';
@@ -17,9 +9,9 @@ import { Head } from '@inertiajs/react';
 import {
   Download,
   Eye,
-  EyeClosed,
+  EyeOff,
   Lock,
-  Menu,
+  RefreshCcw,
   Share2,
   Unlock,
 } from 'lucide-react';
@@ -48,6 +40,8 @@ function randomSeed() {
   return `${Date.now().toString(36)}-${Math.floor(Math.random() * 1e6).toString(36)}`;
 }
 
+const domain = window.location.hostname;
+
 export default function Index() {
   const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Home', href: route('home') },
@@ -61,6 +55,7 @@ export default function Index() {
   const [hidden, setHidden] = useState(false);
   const [locked, setLocked] = useState(false);
   const [guessed, setGuessed] = useState<GuessSet>(new Set());
+  const [generatedAt, setGeneratedAt] = useState(new Date());
 
   useEffect(() => {
     if (!initialSeed) {
@@ -96,7 +91,6 @@ export default function Index() {
   }, [card]);
 
   function toggleGuess(r: number, c: number) {
-    if (locked) return;
     const k = keyOf({ r, c });
     setGuessed((prev) => {
       const next = new Set(prev);
@@ -112,10 +106,11 @@ export default function Index() {
     setSeed(s);
     setGuessed(new Set());
     setCard(generateKey(s));
+    setGeneratedAt(new Date());
   }
 
   const spymasterUrl = (() => {
-    const url = new URL(window.location.origin + '/codenames/key');
+    const url = new URL(window.location.origin + '/codenames');
     url.searchParams.set('seed', card.seed || '');
     url.searchParams.set('start', card.startingTeam);
     return url.toString();
@@ -152,15 +147,15 @@ export default function Index() {
       <Head title="Codenames" />
 
       <div className="">
-        <div className="mx-auto max-w-3xl p-4 md:p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            <div className="flex gap-2">
+        <div className="mx-auto flex max-w-3xl flex-col gap-2 p-4 md:p-6">
+          <div className="flex items-center justify-between gap-2">
+            <div className="hidden gap-2 md:flex">
               <Button
                 className="h-10 rounded px-4 text-sm font-semibold text-white disabled:opacity-40"
                 onClick={() => handleGenerate(randomSeed())}
                 disabled={locked}
               >
-                {locked ? 'Locked' : 'Generate'}
+                <RefreshCcw /> {locked ? 'Locked' : 'Generate'}
               </Button>
               <div>
                 <input
@@ -182,72 +177,46 @@ export default function Index() {
                 </Button>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex w-full justify-center gap-2 md:justify-end">
               <Button
                 variant="outline"
+                size="icon-lg"
                 onClick={() => setHidden((v) => !v)}
-                className="hidden h-10 rounded border px-4 text-sm font-semibold md:flex"
               >
-                {hidden ? 'Show' : 'Hide'}
+                {hidden ? (
+                  <Eye className="size-5" />
+                ) : (
+                  <EyeOff className="size-5" />
+                )}
               </Button>
               <Button
                 variant="outline"
+                size="icon-lg"
                 onClick={() => setLocked((v) => !v)}
-                className={`hidden h-10 rounded px-4 text-sm font-semibold md:flex ${locked ? 'bg-amber-500 text-white' : 'border'}`}
               >
-                {locked ? 'Unlock' : 'Lock'}
+                {locked ? (
+                  <Unlock className="size-5" />
+                ) : (
+                  <Lock className="size-5" />
+                )}
               </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="h-10 rounded border px-4 text-sm font-semibold"
-                  >
-                    <Menu />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-32"
-                  align="end"
-                >
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem
-                      className={`md:hidden`}
-                      onClick={() => setHidden((v) => !v)}
-                    >
-                      {hidden ? 'Show' : 'Hide'}
-                      <DropdownMenuShortcut>
-                        {hidden ? <Eye /> : <EyeClosed />}
-                      </DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className={`md:hidden`}
-                      onClick={() => setLocked((v) => !v)}
-                    >
-                      {locked ? 'Unlock' : 'Lock'}
-                      <DropdownMenuShortcut>
-                        {locked ? <Unlock /> : <Lock />}
-                      </DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={exportFullPng}>
-                      Download
-                      <DropdownMenuShortcut>
-                        <Download />
-                      </DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() =>
-                        shareOrCopyLink('Codenames Spymaster Key', spymasterUrl)
-                      }
-                    >
-                      Share
-                      <DropdownMenuShortcut>
-                        <Share2 />
-                      </DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button
+                variant="outline"
+                size="icon-lg"
+                onClick={exportFullPng}
+                title="Download"
+              >
+                <Download className="size-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon-lg"
+                onClick={() =>
+                  shareOrCopyLink('Codenames Spymaster Key', spymasterUrl)
+                }
+              >
+                <Share2 className="size-5" />
+              </Button>
             </div>
           </div>
 
@@ -296,7 +265,7 @@ export default function Index() {
                     >
                       <div className="absolute inset-0 rounded ring-white/20 ring-inset" />
                       {isGuessed && !hidden && (
-                        <div className="pointer-events-none absolute inset-0 m-2 rounded-lg bg-white backdrop-blur-[1px] md:m-4" />
+                        <div className="pointer-events-none absolute inset-0 m-2 flex items-center justify-center rounded-lg bg-white font-bold backdrop-blur-[1px] md:m-4" />
                       )}
                       {cell === 'assassin' && !hidden && (
                         <div className="pointer-events-none absolute bottom-2 left-2 h-2 w-2 rounded-full bg-white" />
@@ -307,16 +276,57 @@ export default function Index() {
               )}
             </div>
 
-            {/* Optional footer/watermark */}
             <div className="mt-3 flex justify-between text-[10px] text-stone-500 dark:text-stone-400">
               <div className="">
-                Generated {new Date().toLocaleString('id-ID')}
+                Generated {generatedAt.toLocaleString('id-ID')}
               </div>
-              <div className="">anzarsyahid.my.id</div>
+              <div className="">{domain}</div>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-2 md:hidden">
+            <Button
+              className="h-10 rounded px-4 text-sm font-semibold text-white disabled:opacity-40"
+              onClick={() => handleGenerate(randomSeed())}
+              disabled={locked}
+            >
+              <RefreshCcw /> {locked ? 'Locked' : 'Generate'}
+            </Button>
+            <div>
+              <input
+                type="text"
+                placeholder="Input seed"
+                className="h-10 rounded border px-3 text-sm outline-none focus:ring-2 focus:ring-stone-400"
+                value={seed}
+                onChange={(e) => setSeed(e.target.value)}
+                disabled={locked}
+                aria-label="Seed"
+              />
+              <Button
+                variant="secondary"
+                className="-ml-18 h-8 rounded px-4 text-sm font-semibold disabled:opacity-40"
+                onClick={() => handleGenerate()}
+                disabled={locked}
+              >
+                Seed
+              </Button>
             </div>
           </div>
         </div>
       </div>
     </AppLayout>
+  );
+}
+
+function IconButton({ label, onClick, children }: any) {
+  return (
+    <button
+      className="size-10 rounded-lg border bg-card transition hover:bg-accent focus:ring focus:outline-none"
+      aria-label={label}
+      onClick={onClick}
+      title={label}
+    >
+      <span className="grid place-items-center">{children}</span>
+    </button>
   );
 }
