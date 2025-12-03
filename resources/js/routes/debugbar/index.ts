@@ -1,4 +1,4 @@
-import { queryParams, type QueryParams } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 import assets from './assets'
 import cache from './cache'
 import queries from './queries'
@@ -7,25 +7,22 @@ import queries from './queries'
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:43
  * @route '/_debugbar/open'
  */
-export const openhandler = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const openhandler = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: openhandler.url(options),
     method: 'get',
 })
 
 openhandler.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/_debugbar/open',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Barryvdh\Debugbar\Controllers\OpenHandlerController::openhandler
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:43
  * @route '/_debugbar/open'
  */
-openhandler.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+openhandler.url = (options?: RouteQueryOptions) => {
     return openhandler.definition.url + queryParams(options)
 }
 
@@ -34,10 +31,7 @@ openhandler.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) 
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:43
  * @route '/_debugbar/open'
  */
-openhandler.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+openhandler.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: openhandler.url(options),
     method: 'get',
 })
@@ -46,10 +40,7 @@ openhandler.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }):
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:43
  * @route '/_debugbar/open'
  */
-openhandler.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+openhandler.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: openhandler.url(options),
     method: 'head',
 })
@@ -59,25 +50,22 @@ openhandler.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams })
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:77
  * @route '/_debugbar/clockwork/{id}'
  */
-export const clockwork = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const clockwork = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: clockwork.url(args, options),
     method: 'get',
 })
 
 clockwork.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/_debugbar/clockwork/{id}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Barryvdh\Debugbar\Controllers\OpenHandlerController::clockwork
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:77
  * @route '/_debugbar/clockwork/{id}'
  */
-clockwork.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+clockwork.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -88,6 +76,8 @@ clockwork.url = (args: { id: string | number } | [id: string | number ] | string
                     id: args[0],
                 }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
                         id: args.id,
@@ -103,10 +93,7 @@ clockwork.url = (args: { id: string | number } | [id: string | number ] | string
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:77
  * @route '/_debugbar/clockwork/{id}'
  */
-clockwork.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+clockwork.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: clockwork.url(args, options),
     method: 'get',
 })
@@ -115,19 +102,16 @@ clockwork.get = (args: { id: string | number } | [id: string | number ] | string
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/OpenHandlerController.php:77
  * @route '/_debugbar/clockwork/{id}'
  */
-clockwork.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+clockwork.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: clockwork.url(args, options),
     method: 'head',
 })
 const debugbar = {
-    openhandler,
-clockwork,
-assets,
-cache,
-queries,
+    openhandler: Object.assign(openhandler, openhandler),
+clockwork: Object.assign(clockwork, clockwork),
+assets: Object.assign(assets, assets),
+cache: Object.assign(cache, cache),
+queries: Object.assign(queries, queries),
 }
 
 export default debugbar

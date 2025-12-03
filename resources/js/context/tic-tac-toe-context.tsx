@@ -149,8 +149,15 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const handleClick = (index: number) => {
-    if (winner || isDraw || board[index] || (mode !== 'PVP' && !isXNext))
+    if (winner || isDraw) {
+      setBoard(Array(9).fill(null));
+      setIsDraw(false);
+      setWinner(null);
       return;
+    }
+
+    if (board[index] || (mode !== 'PVP' && !isXNext)) return;
+
     const newBoard = [...board];
     newBoard[index] = isXNext ? 'X' : 'O';
     setBoard(newBoard);

@@ -1,6 +1,6 @@
 import Debugbar from './Debugbar'
 const Barryvdh = {
-    Debugbar,
+    Debugbar: Object.assign(Debugbar, Debugbar),
 }
 
 export default Barryvdh

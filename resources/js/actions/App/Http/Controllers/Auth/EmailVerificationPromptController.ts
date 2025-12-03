@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Auth\EmailVerificationPromptController::__invoke
  * @see app/Http/Controllers/Auth/EmailVerificationPromptController.php:17
  * @route '/verify-email'
  */
-const EmailVerificationPromptController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const EmailVerificationPromptController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: EmailVerificationPromptController.url(options),
     method: 'get',
 })
 
 EmailVerificationPromptController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/verify-email',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\Auth\EmailVerificationPromptController::__invoke
  * @see app/Http/Controllers/Auth/EmailVerificationPromptController.php:17
  * @route '/verify-email'
  */
-EmailVerificationPromptController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+EmailVerificationPromptController.url = (options?: RouteQueryOptions) => {
     return EmailVerificationPromptController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ EmailVerificationPromptController.url = (options?: { query?: QueryParams, mergeQ
  * @see app/Http/Controllers/Auth/EmailVerificationPromptController.php:17
  * @route '/verify-email'
  */
-EmailVerificationPromptController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+EmailVerificationPromptController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: EmailVerificationPromptController.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ EmailVerificationPromptController.get = (options?: { query?: QueryParams, mergeQ
  * @see app/Http/Controllers/Auth/EmailVerificationPromptController.php:17
  * @route '/verify-email'
  */
-EmailVerificationPromptController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+EmailVerificationPromptController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: EmailVerificationPromptController.url(options),
     method: 'head',
 })

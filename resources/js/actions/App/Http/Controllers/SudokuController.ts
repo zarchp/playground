@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\SudokuController::index
  * @see app/Http/Controllers/SudokuController.php:15
  * @route '/sudoku'
  */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/sudoku',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\SudokuController::index
  * @see app/Http/Controllers/SudokuController.php:15
  * @route '/sudoku'
  */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see app/Http/Controllers/SudokuController.php:15
  * @route '/sudoku'
  */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/SudokuController.php:15
  * @route '/sudoku'
  */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
@@ -56,25 +47,22 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/SudokuController.php:31
  * @route '/sudoku/new'
  */
-export const newMethod = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const newMethod = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: newMethod.url(options),
     method: 'post',
 })
 
 newMethod.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/sudoku/new',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\SudokuController::newMethod
  * @see app/Http/Controllers/SudokuController.php:31
  * @route '/sudoku/new'
  */
-newMethod.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+newMethod.url = (options?: RouteQueryOptions) => {
     return newMethod.definition.url + queryParams(options)
 }
 
@@ -83,10 +71,7 @@ newMethod.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) =>
  * @see app/Http/Controllers/SudokuController.php:31
  * @route '/sudoku/new'
  */
-newMethod.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+newMethod.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: newMethod.url(options),
     method: 'post',
 })
@@ -96,25 +81,22 @@ newMethod.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): 
  * @see app/Http/Controllers/SudokuController.php:41
  * @route '/sudoku/score'
  */
-export const score = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const score = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: score.url(options),
     method: 'post',
 })
 
 score.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/sudoku/score',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\SudokuController::score
  * @see app/Http/Controllers/SudokuController.php:41
  * @route '/sudoku/score'
  */
-score.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+score.url = (options?: RouteQueryOptions) => {
     return score.definition.url + queryParams(options)
 }
 
@@ -123,10 +105,7 @@ score.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see app/Http/Controllers/SudokuController.php:41
  * @route '/sudoku/score'
  */
-score.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+score.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: score.url(options),
     method: 'post',
 })
@@ -136,25 +115,22 @@ score.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
-export const leaderboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const leaderboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: leaderboard.url(options),
     method: 'get',
 })
 
 leaderboard.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/sudoku/leaderboard',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\SudokuController::leaderboard
  * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
-leaderboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+leaderboard.url = (options?: RouteQueryOptions) => {
     return leaderboard.definition.url + queryParams(options)
 }
 
@@ -163,10 +139,7 @@ leaderboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) 
  * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
-leaderboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+leaderboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: leaderboard.url(options),
     method: 'get',
 })
@@ -175,10 +148,7 @@ leaderboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }):
  * @see app/Http/Controllers/SudokuController.php:68
  * @route '/sudoku/leaderboard'
  */
-leaderboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+leaderboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: leaderboard.url(options),
     method: 'head',
 })

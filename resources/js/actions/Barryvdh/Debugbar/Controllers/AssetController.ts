@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \Barryvdh\Debugbar\Controllers\AssetController::css
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:36
  * @route '/_debugbar/assets/stylesheets'
  */
-export const css = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const css = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: css.url(options),
     method: 'get',
 })
 
 css.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/_debugbar/assets/stylesheets',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Barryvdh\Debugbar\Controllers\AssetController::css
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:36
  * @route '/_debugbar/assets/stylesheets'
  */
-css.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+css.url = (options?: RouteQueryOptions) => {
     return css.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ css.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:36
  * @route '/_debugbar/assets/stylesheets'
  */
-css.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+css.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: css.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ css.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:36
  * @route '/_debugbar/assets/stylesheets'
  */
-css.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+css.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: css.url(options),
     method: 'head',
 })
@@ -56,25 +47,22 @@ css.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:14
  * @route '/_debugbar/assets/javascript'
  */
-export const js = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const js = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: js.url(options),
     method: 'get',
 })
 
 js.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/_debugbar/assets/javascript',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Barryvdh\Debugbar\Controllers\AssetController::js
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:14
  * @route '/_debugbar/assets/javascript'
  */
-js.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+js.url = (options?: RouteQueryOptions) => {
     return js.definition.url + queryParams(options)
 }
 
@@ -83,10 +71,7 @@ js.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:14
  * @route '/_debugbar/assets/javascript'
  */
-js.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+js.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: js.url(options),
     method: 'get',
 })
@@ -95,10 +80,7 @@ js.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see vendor/barryvdh/laravel-debugbar/src/Controllers/AssetController.php:14
  * @route '/_debugbar/assets/javascript'
  */
-js.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+js.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: js.url(options),
     method: 'head',
 })

@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\ChatController::index
  * @see app/Http/Controllers/ChatController.php:21
  * @route '/chats'
  */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/chats',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::index
  * @see app/Http/Controllers/ChatController.php:21
  * @route '/chats'
  */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see app/Http/Controllers/ChatController.php:21
  * @route '/chats'
  */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/ChatController.php:21
  * @route '/chats'
  */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
@@ -56,25 +47,22 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/ChatController.php:46
  * @route '/chats/create'
  */
-export const create = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: create.url(options),
     method: 'get',
 })
 
 create.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/chats/create',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::create
  * @see app/Http/Controllers/ChatController.php:46
  * @route '/chats/create'
  */
-create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+create.url = (options?: RouteQueryOptions) => {
     return create.definition.url + queryParams(options)
 }
 
@@ -83,10 +71,7 @@ create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see app/Http/Controllers/ChatController.php:46
  * @route '/chats/create'
  */
-create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: create.url(options),
     method: 'get',
 })
@@ -95,10 +80,7 @@ create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/ChatController.php:46
  * @route '/chats/create'
  */
-create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: create.url(options),
     method: 'head',
 })
@@ -108,25 +90,22 @@ create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/ChatController.php:54
  * @route '/chats'
  */
-export const store = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
 
 store.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/chats',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::store
  * @see app/Http/Controllers/ChatController.php:54
  * @route '/chats'
  */
-store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+store.url = (options?: RouteQueryOptions) => {
     return store.definition.url + queryParams(options)
 }
 
@@ -135,10 +114,7 @@ store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
  * @see app/Http/Controllers/ChatController.php:54
  * @route '/chats'
  */
-store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
@@ -148,25 +124,22 @@ store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
  * @see app/Http/Controllers/ChatController.php:66
  * @route '/chats/{chat}'
  */
-export const show = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const show = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 show.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/chats/{chat}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::show
  * @see app/Http/Controllers/ChatController.php:66
  * @route '/chats/{chat}'
  */
-show.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { chat: args }
     }
@@ -180,6 +153,8 @@ show.url = (args: { chat: number | { id: number } } | [chat: number | { id: numb
                     chat: args[0],
                 }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
                         chat: typeof args.chat === 'object'
@@ -197,10 +172,7 @@ show.url = (args: { chat: number | { id: number } } | [chat: number | { id: numb
  * @see app/Http/Controllers/ChatController.php:66
  * @route '/chats/{chat}'
  */
-show.get = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+show.get = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -209,10 +181,7 @@ show.get = (args: { chat: number | { id: number } } | [chat: number | { id: numb
  * @see app/Http/Controllers/ChatController.php:66
  * @route '/chats/{chat}'
  */
-show.head = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+show.head = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -222,25 +191,22 @@ show.head = (args: { chat: number | { id: number } } | [chat: number | { id: num
  * @see app/Http/Controllers/ChatController.php:74
  * @route '/chats/{chat}/edit'
  */
-export const edit = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const edit = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
 
 edit.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/chats/{chat}/edit',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::edit
  * @see app/Http/Controllers/ChatController.php:74
  * @route '/chats/{chat}/edit'
  */
-edit.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+edit.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { chat: args }
     }
@@ -254,6 +220,8 @@ edit.url = (args: { chat: number | { id: number } } | [chat: number | { id: numb
                     chat: args[0],
                 }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
                         chat: typeof args.chat === 'object'
@@ -271,10 +239,7 @@ edit.url = (args: { chat: number | { id: number } } | [chat: number | { id: numb
  * @see app/Http/Controllers/ChatController.php:74
  * @route '/chats/{chat}/edit'
  */
-edit.get = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+edit.get = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -283,10 +248,7 @@ edit.get = (args: { chat: number | { id: number } } | [chat: number | { id: numb
  * @see app/Http/Controllers/ChatController.php:74
  * @route '/chats/{chat}/edit'
  */
-edit.head = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+edit.head = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -296,25 +258,22 @@ edit.head = (args: { chat: number | { id: number } } | [chat: number | { id: num
  * @see app/Http/Controllers/ChatController.php:82
  * @route '/chats/{chat}'
  */
-export const update = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'put',
-} => ({
+export const update = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 
 update.definition = {
-    methods: ['put','patch'],
+    methods: ["put","patch"],
     url: '/chats/{chat}',
-}
+} satisfies RouteDefinition<["put","patch"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::update
  * @see app/Http/Controllers/ChatController.php:82
  * @route '/chats/{chat}'
  */
-update.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+update.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { chat: args }
     }
@@ -328,6 +287,8 @@ update.url = (args: { chat: number | { id: number } } | [chat: number | { id: nu
                     chat: args[0],
                 }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
                         chat: typeof args.chat === 'object'
@@ -345,10 +306,7 @@ update.url = (args: { chat: number | { id: number } } | [chat: number | { id: nu
  * @see app/Http/Controllers/ChatController.php:82
  * @route '/chats/{chat}'
  */
-update.put = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'put',
-} => ({
+update.put = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -357,10 +315,7 @@ update.put = (args: { chat: number | { id: number } } | [chat: number | { id: nu
  * @see app/Http/Controllers/ChatController.php:82
  * @route '/chats/{chat}'
  */
-update.patch = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'patch',
-} => ({
+update.patch = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -370,25 +325,22 @@ update.patch = (args: { chat: number | { id: number } } | [chat: number | { id: 
  * @see app/Http/Controllers/ChatController.php:90
  * @route '/chats/{chat}'
  */
-export const destroy = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+export const destroy = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
 destroy.definition = {
-    methods: ['delete'],
+    methods: ["delete"],
     url: '/chats/{chat}',
-}
+} satisfies RouteDefinition<["delete"]>
 
 /**
 * @see \App\Http\Controllers\ChatController::destroy
  * @see app/Http/Controllers/ChatController.php:90
  * @route '/chats/{chat}'
  */
-destroy.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+destroy.url = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { chat: args }
     }
@@ -402,6 +354,8 @@ destroy.url = (args: { chat: number | { id: number } } | [chat: number | { id: n
                     chat: args[0],
                 }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
                         chat: typeof args.chat === 'object'
@@ -419,21 +373,18 @@ destroy.url = (args: { chat: number | { id: number } } | [chat: number | { id: n
  * @see app/Http/Controllers/ChatController.php:90
  * @route '/chats/{chat}'
  */
-destroy.delete = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+destroy.delete = (args: { chat: number | { id: number } } | [chat: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 const chats = {
-    index,
-create,
-store,
-show,
-edit,
-update,
-destroy,
+    index: Object.assign(index, index),
+create: Object.assign(create, create),
+store: Object.assign(store, store),
+show: Object.assign(show, show),
+edit: Object.assign(edit, edit),
+update: Object.assign(update, update),
+destroy: Object.assign(destroy, destroy),
 }
 
 export default chats

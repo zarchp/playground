@@ -1,6 +1,6 @@
 import Controllers from './Controllers'
 const Debugbar = {
-    Controllers,
+    Controllers: Object.assign(Controllers, Controllers),
 }
 
 export default Debugbar

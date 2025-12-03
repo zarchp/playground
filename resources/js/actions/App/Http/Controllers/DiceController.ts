@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\DiceController::__invoke
  * @see app/Http/Controllers/DiceController.php:16
  * @route '/dice'
  */
-const DiceController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const DiceController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: DiceController.url(options),
     method: 'get',
 })
 
 DiceController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/dice',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\DiceController::__invoke
  * @see app/Http/Controllers/DiceController.php:16
  * @route '/dice'
  */
-DiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+DiceController.url = (options?: RouteQueryOptions) => {
     return DiceController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ DiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
  * @see app/Http/Controllers/DiceController.php:16
  * @route '/dice'
  */
-DiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+DiceController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: DiceController.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ DiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
  * @see app/Http/Controllers/DiceController.php:16
  * @route '/dice'
  */
-DiceController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+DiceController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: DiceController.url(options),
     method: 'head',
 })

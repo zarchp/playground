@@ -7,14 +7,14 @@ import CodenamesController from './CodenamesController'
 import Settings from './Settings'
 import Auth from './Auth'
 const Controllers = {
-    ChatController,
-DiceController,
-FourEightController,
-TicTacToeController,
-SudokuController,
-CodenamesController,
-Settings,
-Auth,
+    ChatController: Object.assign(ChatController, ChatController),
+DiceController: Object.assign(DiceController, DiceController),
+FourEightController: Object.assign(FourEightController, FourEightController),
+TicTacToeController: Object.assign(TicTacToeController, TicTacToeController),
+SudokuController: Object.assign(SudokuController, SudokuController),
+CodenamesController: Object.assign(CodenamesController, CodenamesController),
+Settings: Object.assign(Settings, Settings),
+Auth: Object.assign(Auth, Auth),
 }
 
 export default Controllers

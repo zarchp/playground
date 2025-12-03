@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\FourEightController::__invoke
  * @see app/Http/Controllers/FourEightController.php:16
  * @route '/2048'
  */
-const FourEightController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const FourEightController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: FourEightController.url(options),
     method: 'get',
 })
 
 FourEightController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/2048',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\FourEightController::__invoke
  * @see app/Http/Controllers/FourEightController.php:16
  * @route '/2048'
  */
-FourEightController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+FourEightController.url = (options?: RouteQueryOptions) => {
     return FourEightController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ FourEightController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPa
  * @see app/Http/Controllers/FourEightController.php:16
  * @route '/2048'
  */
-FourEightController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+FourEightController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: FourEightController.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ FourEightController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPa
  * @see app/Http/Controllers/FourEightController.php:16
  * @route '/2048'
  */
-FourEightController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+FourEightController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: FourEightController.url(options),
     method: 'head',
 })

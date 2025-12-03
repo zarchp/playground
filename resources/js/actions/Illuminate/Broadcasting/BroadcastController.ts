@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../wayfinder'
 /**
 * @see \Illuminate\Broadcasting\BroadcastController::authenticate
  * @see vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastController.php:18
  * @route '/broadcasting/auth'
  */
-export const authenticate = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const authenticate = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: authenticate.url(options),
     method: 'get',
 })
 
 authenticate.definition = {
-    methods: ['get','post','head'],
+    methods: ["get","post","head"],
     url: '/broadcasting/auth',
-}
+} satisfies RouteDefinition<["get","post","head"]>
 
 /**
 * @see \Illuminate\Broadcasting\BroadcastController::authenticate
  * @see vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastController.php:18
  * @route '/broadcasting/auth'
  */
-authenticate.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+authenticate.url = (options?: RouteQueryOptions) => {
     return authenticate.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ authenticate.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams })
  * @see vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastController.php:18
  * @route '/broadcasting/auth'
  */
-authenticate.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+authenticate.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: authenticate.url(options),
     method: 'get',
 })
@@ -43,10 +37,7 @@ authenticate.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams })
  * @see vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastController.php:18
  * @route '/broadcasting/auth'
  */
-authenticate.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+authenticate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: authenticate.url(options),
     method: 'post',
 })
@@ -55,10 +46,7 @@ authenticate.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
  * @see vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastController.php:18
  * @route '/broadcasting/auth'
  */
-authenticate.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+authenticate.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: authenticate.url(options),
     method: 'head',
 })
