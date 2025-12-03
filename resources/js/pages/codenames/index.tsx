@@ -242,9 +242,7 @@ export default function Index() {
       <Head title="Codenames" />
 
       <div className="mx-auto flex max-w-3xl flex-col gap-2 p-4 md:p-6">
-        {/* Header toolbar: top utilities (right) + seed controls (left on md+) */}
         <div className="flex items-center justify-between gap-2">
-          {/* Seed controls appear top on md+ */}
           <div className="hidden md:block">
             <SeedControls />
           </div>
@@ -323,7 +321,7 @@ export default function Index() {
                       </div>
                     )}
                     {cell === 'assassin' && !hidden && (
-                      <div className="pointer-events-none absolute bottom-2 left-2 h-2 w-2 rounded-full bg-white" />
+                      <div className="pointer-events-none absolute bottom-2 left-2 size-2 rounded-full bg-white md:bottom-3 md:left-3 md:size-3" />
                     )}
                   </div>
                 );
