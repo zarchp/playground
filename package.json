@@ -28,6 +28,7 @@
   "dependencies": {
     "@3d-dice/dice-box": "^1.1.4",
     "@3d-dice/theme-smooth": "^0.2.1",
+    "@excalidraw/excalidraw": "^0.18.0",
     "@headlessui/react": "^2.2.9",
     "@inertiajs/react": "^2.3.3",
     "@radix-ui/react-avatar": "^1.1.11",
@@ -68,7 +69,6 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
-    "tldraw": "^4.2.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   },

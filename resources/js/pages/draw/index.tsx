@@ -1,8 +1,8 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
+import { Excalidraw } from '@excalidraw/excalidraw';
+import '@excalidraw/excalidraw/index.css';
 import { Head } from '@inertiajs/react';
-import { Tldraw } from 'tldraw';
-import 'tldraw/tldraw.css';
 
 export default function Index() {
   const breadcrumbs: BreadcrumbItem[] = [
@@ -15,10 +15,12 @@ export default function Index() {
       <Head title="Free Draw" />
 
       <div className="h-full w-full">
-        <Tldraw
-          persistenceKey="playgroung-draw"
-          onMount={(editor) => {
-            editor.setCurrentTool('draw');
+        <Excalidraw
+          initialData={{
+            appState: {
+              activeTool: { type: 'freedraw' },
+            },
+            scrollToContent: true,
           }}
         />
       </div>
