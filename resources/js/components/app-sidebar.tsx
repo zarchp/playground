@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Code, Dices, Grid3X3, Hash, Home } from 'lucide-react';
+import { Code, Dices, Grid3X3, Hash, Home, Palette } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -34,6 +34,11 @@ const mainNavItems: NavItem[] = [
     title: 'Codenames',
     href: route('codenames.index'),
     icon: Code,
+  },
+  {
+    title: 'Free Draw',
+    href: route('draw.index'),
+    icon: Palette,
   },
   {
     title: 'Tic Tac Toe',

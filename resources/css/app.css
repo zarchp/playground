@@ -279,3 +279,7 @@
   width: 100%;
   height: 100%;
 }
+
+.tl-watermark_SEE-LICENSE {
+  display: none !important;
+}

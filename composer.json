@@ -29,6 +29,7 @@
         "jasonmccreary/laravel-test-assertions": "^2.8",
         "larastan/larastan": "^3.5",
         "laravel-shift/blueprint": "^2.12",
+        "laravel/boost": "^1.8",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",

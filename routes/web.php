@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CodenamesController;
 use App\Http\Controllers\DiceController;
+use App\Http\Controllers\DrawController;
 use App\Http\Controllers\FourEightController;
 use App\Http\Controllers\SudokuController;
 use App\Http\Controllers\TicTacToeController;
@@ -38,7 +39,7 @@ Route::get('/sudoku/leaderboard', [SudokuController::class, 'leaderboard'])->nam
 
 Route::get('codenames', CodenamesController::class)->name('codenames.index');
 
-// Route::middleware(['auth', 'verified'])->group(function (): void {});
+Route::get('free-draw', DrawController::class)->name('draw.index');
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/settings.php';
+// require __DIR__ . '/auth.php';

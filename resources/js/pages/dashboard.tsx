@@ -10,6 +10,7 @@ import {
   Grid3X3,
   Hash,
   KeyRound,
+  Palette,
   Rocket,
 } from 'lucide-react';
 
@@ -24,32 +25,39 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'Dice',
-    description: 'Simple 3D dice roller for quick decisions & games.',
+    description: 'Simple 3D dice roller for quick decisions, games, and randomness.',
     href: route('dice.index'),
     icon: Dice6,
   },
   {
     title: 'Codenames',
-    description: 'Generate secret key cards and share with your team.',
+    description: 'Generate secret key cards and play Codenames with your friends.',
     href: route('codenames.index'),
     icon: KeyRound,
     badge: 'New',
   },
   {
+    title: 'Free Draw',
+    description: 'A lightweight free-drawing canvas for quick sketches and ideas.',
+    href: route('draw.index'),
+    icon: Palette,
+    badge: 'New',
+  },
+  {
     title: 'Tic Tac Toe',
-    description: 'PvP & AI modes (easy/medium/hard).',
+    description: 'Classic Tic Tac Toe with PvP and AI modes.',
     href: route('tic-tac-toe.index'),
     icon: Hash,
   },
   {
     title: 'Sudoku',
-    description: 'Playable generator, solver, hints, and leaderboard.',
+    description: 'Play, generate, and solve Sudoku puzzles.',
     href: route('sudoku.index'),
     icon: Grid3X3,
   },
   {
     title: 'More Apps',
-    description: 'Coming soon, stay tuned!',
+    description: 'More mini-games and utilities are on the way, stay tuned!',
     href: '#',
     icon: Rocket,
   },
@@ -102,9 +110,6 @@ export default function Dashboard() {
               </Button>
             </div> */}
           </motion.div>
-
-          {/* subtle background pattern */}
-          {/* <div className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-gradient-to-tr from-sky-400/20 to-amber-400/20 blur-3xl dark:from-sky-500/10 dark:to-amber-500/10" /> */}
         </div>
 
         {/* Apps */}
@@ -139,7 +144,7 @@ export default function Dashboard() {
                       <div className="flex flex-1 items-center justify-between">
                         <CardTitle className="text-lg">{f.title}</CardTitle>
                         {f.badge && (
-                          <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-medium text-sky-700 dark:bg-sky-900/40 dark:text-sky-300">
+                          <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">
                             {f.badge}
                           </span>
                         )}
