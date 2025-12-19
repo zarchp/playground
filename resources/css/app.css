@@ -280,6 +280,10 @@
   height: 100%;
 }
 
-.excalidraw .dropdown-menu-group  {
-  display: none !important;
+#react-sketch-canvas path {
+  stroke: var(--color-neutral-700);
+}
+
+.dark #react-sketch-canvas path {
+  stroke: var(--color-neutral-200);
 }
